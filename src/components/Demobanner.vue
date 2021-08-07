@@ -1,15 +1,25 @@
 <template>
 
 	<div class="main">
+		<div>			
+			<button class="boton" @click="div2 = !div2" v-if="!div2">Mostrar banner vertical</button>
+			<button class="boton" @click="div2 = !div2" v-else>Ocultar banner vertical</button>
+
+			<button class="boton" v-on:click="subdiv1 = !subdiv1" v-if="!subdiv1">Mostrar banner reducido</button>
+			<button class="boton" v-on:click="subdiv1 = !subdiv1" v-else>Ocultar banner reducido</button>
+		</div>
 		<div class="div1">
 			<custom-banner-vue></custom-banner-vue>
-			<div class="subdiv1">		
+			<div class="div2" v-if="div2">
+				<custom-banner-vue :options="options"></custom-banner-vue>
+			</div>
+			<div class="subdiv1" v-if="subdiv1">
 				<custom-banner-vue :options="options2"></custom-banner-vue>		
 			</div>
+			
+
 		</div>
-		<div class="div2">
-			<custom-banner-vue :options="options"></custom-banner-vue>
-		</div>
+		
 	</div>
 
 </template>
@@ -25,6 +35,8 @@ export default{
 	data(){
 		return {
 			//banner vertical
+			subdiv1:false,
+			div2:false,
 			options:{
 				time:10000,
 				orientation:"vertical",
@@ -165,6 +177,16 @@ export default{
 	float: left;
 
 }
+.boton{
+	background-color: #0072fa;
+	color: #FFF;
+	padding: 10px;
+	margin: 10px;
+	cursor: pointer;
+	border-color: #000;
+	border-radius: 4px;
+}
+/*
 @media (max-width: 1050px){
 	.div2{		
 		float: none;
@@ -173,6 +195,7 @@ export default{
 		display: block;
 	}	
 }
+*/
 @media (max-width: 850px){
 	.main{
 		display:inline-block
